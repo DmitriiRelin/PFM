@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.pfm.R
 import com.example.pfm.domain.entites.People
 import com.example.pfm.ui.home.rv.DiffUtilCallBack
-import com.example.pfm.ui.home.rv.HomeHolder
 
 class FavoritesAdapter(
     private val onItemClickListenerFavorites: (People) -> Unit,

@@ -2,8 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
-            name="viewModel"
+            name="vm"
             type="com.example.pfm.ui.deatil.DetailVieModel" />
     </data>
 
@@ -63,8 +64,7 @@
                 style="@style/DetailTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.firstNameLiveData}"
-                />
+                android:text="@={vm.firstNameLiveData}" />
 
             <EditText
 
@@ -72,8 +72,7 @@
                 style="@style/DetailTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.lastNameLiveData}"
-                />
+                android:text="@={vm.lastNameLiveData}" />
 
             <EditText
 
@@ -81,8 +80,7 @@
                 style="@style/DetailTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.emailLiveData}"
-                />
+                android:text="@={vm.emailLiveData}" />
 
             <Button
                 android:id="@+id/save"

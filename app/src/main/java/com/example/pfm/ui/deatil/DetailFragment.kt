@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pfm.App
 import com.example.pfm.R
-import com.example.pfm.utils.loadImage
 import com.example.pfm.databinding.FragmentDetailBinding
 import com.example.pfm.domain.entites.People
 import com.example.pfm.utils.EventObserver
+import com.example.pfm.utils.loadImage
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
@@ -36,8 +38,11 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).apply {
-            viewModel = viewModel
+        _binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
+            R.layout.fragment_detail,
+            container,
+            false).apply {
+            vm = viewModel
             lifecycleOwner = viewLifecycleOwner
         }
 
@@ -51,7 +56,6 @@ class DetailFragment : Fragment() {
         argsPeople.let { people ->
             if (people != null) {
                 viewModel.start(people)
-//                setAllFields(people)
             }
         }
 
@@ -65,12 +69,11 @@ class DetailFragment : Fragment() {
                 binding.addToFavorite.setImageResource(R.drawable.ic_baseline_star_border_24)
                 notEditable()
             }
-
         }
 
-       /* viewModel.editFailureEvent.observe(viewLifecycleOwner, EventObserver{
+        viewModel.editFailureEvent.observe(viewLifecycleOwner, EventObserver {
             Snackbar.make(binding.root, "вы не ввели: $it", Snackbar.LENGTH_LONG).show()
-        })*/
+        })
 
         binding.addToFavorite.setOnClickListener {
             viewModel.changeFavoriteStatus()
@@ -78,6 +81,7 @@ class DetailFragment : Fragment() {
 
         binding.save.setOnClickListener {
             viewModel.savePeopleChanges()
+            findNavController().popBackStack()
         }
     }
 

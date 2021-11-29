@@ -1,10 +1,10 @@
 package com.example.pfm.ui.deatil
 
 import androidx.lifecycle.*
-import com.example.pfm.utils.Event
 import com.example.pfm.domain.entites.People
 import com.example.pfm.domain.usecases.DeleteFavoritePeopleUseCase
 import com.example.pfm.domain.usecases.InsertFavoritePeopleUseCase
+import com.example.pfm.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,24 +19,24 @@ class DetailVieModel @Inject constructor(
     private val _peopleLiveData = MutableLiveData<People>()
     val peopleLiveData: LiveData<People> = _peopleLiveData
 
-//    val editFailureEvent = MutableLiveData<Event<String>>()
+    val editFailureEvent = MutableLiveData<Event<String>>()
 
     fun savePeopleChanges() {
         viewModelScope.launch {
             _peopleLiveData.value?.let {
                 val firstNameValue = firstNameLiveData.value
-                val lastNameValue = firstNameLiveData.value
-                val emailValue = firstNameLiveData.value
+                val lastNameValue = lastNameLiveData.value
+                val emailValue = emailLiveData.value
                 if (firstNameValue == null || firstNameValue.isEmpty()) {
-//                    editFailureEvent.value = Event("first name")
+                    editFailureEvent.value = Event("first name")
                     return@let
                 }
                 if (lastNameValue == null || lastNameValue.isEmpty()) {
-//                    editFailureEvent.value = Event("last name")
+                    editFailureEvent.value = Event("last name")
                     return@let
                 }
                 if (emailValue == null || emailValue.isEmpty()) {
-//                    editFailureEvent.value = Event("email")
+                    editFailureEvent.value = Event("email")
                     return@let
                 }
 

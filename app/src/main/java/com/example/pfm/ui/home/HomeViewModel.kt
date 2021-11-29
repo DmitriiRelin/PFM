@@ -13,7 +13,7 @@ class HomeViewModel @Inject constructor(private val getListPeopleUseCase: GetLis
     private val _listLiveData = MutableLiveData<List<People>>()
     val listLiveData: LiveData<List<People>> = _listLiveData
 
-     fun getList() {
+    fun getList() {
         viewModelScope.launch {
             getListPeopleUseCase.getListPeople().collect {
                 _listLiveData.value = it

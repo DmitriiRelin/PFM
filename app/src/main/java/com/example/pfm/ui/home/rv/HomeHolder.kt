@@ -13,11 +13,5 @@ class HomeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun onBind(people: People) {
         binding.peopleFirstName.text = people.firstName
         binding.peopleLastName.text = people.lastName
-//            Glide.with(itemView.context)
-//                .load(picture.url)
-//                .placeholder(R.color.primaryColor)
-//                .fitCenter()
-//                .centerCrop()
-//                .into(binding.seeAlsoImage)
     }
 }
